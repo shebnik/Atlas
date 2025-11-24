@@ -1,9 +1,9 @@
-if (Test-Path -Path "C:\Program Files\Atlas Toolbox\AtlasToolbox.exe") {
+if (Test-Path -Path "$env:HOMEDRIVE\Program Files\Atlas Toolbox\AtlasToolbox.exe") {
     Write-Host "AtlasOS Toolbox is already installed.";
     Write-Host "Press any key to exit..."
     Read-Host
     exit 0
-} 
+}
 else {
     try {
         $tempDirectory = Join-Path ([IO.Path]::GetTempPath()) ([IO.Path]::GetRandomFileName())
@@ -18,7 +18,7 @@ else {
 
         Write-Output "Installing Toolbox..."
         Start-Process -FilePath "$tempDirectory\toolbox.exe" -WindowStyle Hidden -ArgumentList '/verysilent /install /MERGETASKS="desktopicon"' -Wait
-  
+
         exit
     }
     catch {

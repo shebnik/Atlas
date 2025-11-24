@@ -229,7 +229,7 @@ Error: $_" -Level Critical -Exit -ExitCode 6
 
     Write-Status 'Installing Microsoft Edge...'
     Start-Process -FilePath 'msiexec.exe' -ArgumentList "/i `"$msi`" /l `"$msiLog`" /quiet" -Wait
-    
+
     Write-Status 'Repairing Microsoft Edge...'
     Start-Process -FilePath 'msiexec.exe' -ArgumentList "/fa `"$msi`" /l `"$msiLog`" /quiet" -Wait
 
@@ -348,19 +348,20 @@ To perform an action, also type its number.
 
 # Project originally made by ShadowWhisperer and is licensed under CC0-1.0 License
 # https://github.com/ShadowWhisperer/Remove-MS-Edge
+# https://api.github.com/repos/ShadowWhisperer/Remove-MS-Edge/contents/Batch/Edge.bat
 if ($UninstallEdge) {
     Write-Status "Uninstalling Edge Chromium..."
     try {
         $tempDirectory = Join-Path ([IO.Path]::GetTempPath()) ([IO.Path]::GetRandomFileName())
         New-Item -ItemType Directory -Path $tempDirectory | Out-Null
 
-        & curl.exe -LSs "https://github.com/ShadowWhisperer/Remove-MS-Edge/releases/latest/download/Remove-Edge.exe" -o "$tempDirectory\RemoveEdge.exe"
+        & curl.exe -LSs "https://raw.githubusercontent.com/ShadowWhisperer/Remove-MS-Edge/main/Batch/Edge-Appx.bat" -o "$tempDirectory\Edge.bat"
         if (!$?) {
             Write-Error "Downloading script failed."
             exit 1
         }
 
-        Start-Process -FilePath "$tempDirectory\RemoveEdge.exe" -WindowStyle Hidden -Wait
+        Start-Process -FilePath "$tempDirectory\Edge.exe" -WindowStyle Hidden -Wait
         Write-Output "Successfully removed Microsoft Edge..."
         Write-Output "Press any key to exit"
         Read-Host
