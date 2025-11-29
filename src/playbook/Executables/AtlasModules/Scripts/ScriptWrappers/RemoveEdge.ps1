@@ -361,7 +361,7 @@ if ($UninstallEdge) {
             exit 1
         }
 
-        Start-Process -FilePath "$tempDirectory\Edge.exe" -WindowStyle Hidden -Wait
+        Start-Process -FilePath "$tempDirectory\Edge.bat" -WindowStyle Hidden -Wait
         Write-Output "Successfully removed Microsoft Edge..."
         Write-Output "Press any key to exit"
         Read-Host
