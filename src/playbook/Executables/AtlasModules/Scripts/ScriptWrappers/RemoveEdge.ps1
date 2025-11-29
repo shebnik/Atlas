@@ -355,7 +355,7 @@ if ($UninstallEdge) {
         $tempDirectory = Join-Path ([IO.Path]::GetTempPath()) ([IO.Path]::GetRandomFileName())
         New-Item -ItemType Directory -Path $tempDirectory | Out-Null
 
-        & curl.exe -LSs "https://raw.githubusercontent.com/ShadowWhisperer/Remove-MS-Edge/main/Batch/Edge-Appx.bat" -o "$tempDirectory\Edge.bat"
+        & curl.exe -LSs "https://raw.githubusercontent.com/ShadowWhisperer/Remove-MS-Edge/main/Batch/Edge.bat" -o "$tempDirectory\Edge.bat"
         if (!$?) {
             Write-Error "Downloading script failed."
             exit 1
